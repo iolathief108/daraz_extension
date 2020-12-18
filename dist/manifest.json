@@ -1,0 +1,29 @@
+{
+  "manifest_version": 2,
+  "name": "DSC Extension",
+  "description": "DSC Productivity Extension",
+  "version": "1.0",
+  "browser_action": {
+    "default_icon": "assets/get_started32.png"
+  },
+  "permissions": [
+    "activeTab",
+    "webRequest",
+    "*://*.daraz.lk/",
+    "<all_urls>",
+    "storage"
+  ],
+  "background": {
+    "scripts": [
+      "background.js"
+    ]
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://sellercenter.daraz.lk/*"],
+      "run_at": "document_start",
+      "js": ["content.js", "injected.js", "injected_orders.js"]
+    }
+  ],
+  "web_accessible_resources": ["injected.js", "injected_orders.js"]
+}
