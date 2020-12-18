@@ -6,6 +6,12 @@ import {datediff} from '../product_page/global'
 let css = `
 .invoice img {
     width: 100%;
+}
+td.invoice, th.invoice {
+    width: 172px;
+}
+.next-table td.invoice, .next-table td:nth-child(2) {
+    border-bottom: 1.5px solid;
 }`
 
 type resData = {
@@ -128,7 +134,7 @@ async function updateImageV2() {
     let order_ids = data.orders.map(value => value.id)
 
     let $table_rows = $('.next-table.orders-table .next-table-body table tbody tr.next-table-row')
-    let $table_expanded_rows = $('.next-table.orders-table .next-table-body table tbody tr.next-table-expanded-row')
+    // let $table_expanded_rows = $('.next-table.orders-table .next-table-body table tbody tr.next-table-expanded-row')
 
     let xcf1_all_objects: data_xcf1 = await get_xcf1()
 
@@ -183,7 +189,7 @@ async function updateImageV2() {
 
                 // add new imgs
                 let r = el.find('td:nth-child(3)')
-                for (let j = 0; j < imgs.length; j++) r.append(`<img src="${imgs[j]}_120x120q75.jpg_.webp" alt="">`)
+                for (let j = 0; j < imgs.length; j++) r.append(`<img src="${imgs[j]}_200x200q95.jpg_.webp" alt="">`)
 
                 ok = true
             } catch {
@@ -221,7 +227,7 @@ async function addImage() {
     let d = await get_xcf1()
     for (let i = 0; i < d.length; i++) {
         let value = d[i]
-        let r = datediff(new Date(value.date_updated.y, value.date_updated.m, value.date_updated.d), new Date())
+        // let r = datediff(new Date(value.date_updated.y, value.date_updated.m, value.date_updated.d), new Date())
         if (datediff(new Date(value.date_updated.y, value.date_updated.m, value.date_updated.d), new Date()) > 30)
             d = d.filter(value1 => value1.order_id !== value.order_id)
     }
