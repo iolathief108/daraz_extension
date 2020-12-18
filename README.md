@@ -8,3 +8,7 @@ Additional functionality to daraz seller center
 - button security
 - order page increase image quality and wide
 - product page increase image quality and wide
+
+
+## Errors
+1 cannot read property title detail of undefined
