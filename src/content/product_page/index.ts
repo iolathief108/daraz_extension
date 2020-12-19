@@ -1,10 +1,9 @@
-// import Refresh from './refresh'
+import Refresh from './refresh'
 import addImage from './addImage'
 import small_tweaks from './small_tweaks'
 
 export default function () {
     addImage()
-    // Refresh()
+    Refresh()
     small_tweaks()
-
 }
