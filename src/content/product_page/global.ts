@@ -45,14 +45,16 @@ export async function wait_for_finish_load(sleep_Start?: number, sleep_after?: n
 
 
 export function add_button(text: string, callback: Function): JQuery {
-    let $btnUpdatePrice = $(`<button>${text}</button>`)
+    let $btnUpdatePrice = $(`
+        <button class="hidden next-btn next-btn-normal next-btn-medium ol-next-button block toolbar-margin">${text}</button>`)
+
     $btnUpdatePrice.on('click', () => callback())
     run_when_active(['#toolbar_filter_btn']).then(() => $('#toolbar_filter_btn').after($btnUpdatePrice))
     return $btnUpdatePrice
 }
 
 
-export function datediff(date_before: Date, date_after: Date):number {
+export function datediff(date_before: Date, date_after: Date): number {
     // Take the difference between the dates and divide by milliseconds per day.
     // Round to nearest whole number to deal with DST.
     // @ts-ignore

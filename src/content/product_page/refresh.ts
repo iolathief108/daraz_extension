@@ -15,7 +15,11 @@ let css = `
     }
     .bg.exclude {
         background-color: #bc00de47;
-    }`
+    }
+    .hidden {
+        display: none;
+    }
+    `
 
 
 /*
@@ -27,7 +31,7 @@ async function getExcludeList(): Promise<sku_exclude_data> {
 
     chrome.storage.local.get('sku_exclude', function (result) {
         if (result.sku_exclude === undefined) {
-            init_sku_exclude()
+            initSkuExclude()
             ok = true
         } else {
             data = result.sku_exclude
@@ -48,7 +52,7 @@ function setExcludeList(sku_exclude_data: sku_exclude_data) {
     })
 }
 
-function init_sku_exclude() {
+function initSkuExclude() {
     let data: sku_exclude = {
         'sku_exclude': [],
     }
@@ -61,13 +65,13 @@ function init_sku_exclude() {
 * */
 async function onReloadBtnClick() {
 
-    let table_rows = $('.next-table.ol-base-table .next-table-body table tbody tr')
+    let tableRows = $('.next-table.ol-base-table .next-table-body table tbody tr')
     let sku_exclude_data = await getExcludeList()
 
     // Loop through Table Row
-    for (let i = 0; i < table_rows.length; i++) {
+    for (let i = 0; i < tableRows.length; i++) {
 
-        let $table_row: JQuery = $(table_rows[i])
+        let $table_row: JQuery = $(tableRows[i])
 
         // if switch on and link enabled
         if (is_switch_on($table_row) && is_link_active($table_row)) {
@@ -97,15 +101,15 @@ async function onReloadBtnClick() {
 }
 
 async function onSelectBtnClick() {
-    let $table_rows = $('.next-table.ol-base-table .next-table-body table tbody tr')
+    let $tableRows = $('.next-table.ol-base-table .next-table-body table tbody tr')
     let sku_exclude_list = await getExcludeList()
 
     if (select_exclude_btn.text() === 'Select') {
 
         select_exclude_btn.text('Submit')
 
-        for (let i = 0; i < $table_rows.length; i++) {
-            let $table_row = $($table_rows[i])
+        for (let i = 0; i < $tableRows.length; i++) {
+            let $table_row = $($tableRows[i])
 
             // current row SKU
             let sku: string = $table_row.find('td:nth-child(2) > div').text()
@@ -129,9 +133,9 @@ async function onSelectBtnClick() {
 
         select_exclude_btn.text('Select')
 
-        for (let i = 0; i < $table_rows.length; i++) {
+        for (let i = 0; i < $tableRows.length; i++) {
 
-            let table_row = $($table_rows[i])
+            let table_row = $($tableRows[i])
             let sku = table_row.find('td:nth-child(2) > div').text()
             let is_exclude_already = sku_exclude_list.includes(sku)
 
