@@ -1,12 +1,11 @@
 const Path = require('path')
 const webpack = require('webpack')
 const CopyPlugin = require('copy-webpack-plugin')
-const devMode = false
+const devMode = true
 
 module.exports = () => {
 
     return {
-        // devtool: devMode ? 'source-map' : false,
         devtool: devMode ? 'inline-source-map' : false,
         mode: devMode ? 'development' : 'production',
         entry: {
