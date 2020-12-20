@@ -7,6 +7,8 @@ Additional functionality to daraz seller center
 - deselected product indicate
 - button security
 - product page increase image quality and wide
+- product page out dated sale price detect 
+- Campaign page discount price tab 
 
 
 ## Errors
